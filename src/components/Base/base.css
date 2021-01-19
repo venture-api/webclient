@@ -1,5 +1,7 @@
 :root {
     --serif: monospace;
+    --primaryBlue: #2194E0;
+    --primaryBlueDark: #196896;
 }
 
 body {
@@ -14,7 +16,6 @@ body {
 
 .center {
     display: grid;
-    grid-template-columns: 1fr;
     grid-template-rows: 100vh;
     align-items: center;
     justify-items: center;
@@ -31,12 +32,38 @@ form h1 {
     background-size: contain;
 }
 
+button {
+    font-size: 90%;
+    padding: .4em .5em;
+    outline: none;
+    cursor: pointer;
+}
+
+button.primary {
+    background-color: #2194E0;
+    border: none;
+    border-bottom: 4px solid #196896;
+    color: white;
+    opacity: 0.8;
+    float: right;
+}
+
+button.primary:hover {
+    opacity: 1;
+}
+
+button.primary:focus {
+    border-bottom: none;
+    border-top: 4px solid white
+}
+
 input {
     font-family: var(--serif);
     border: 2px solid gray;
-    font-size: larger;
+    font-size: 90%;
     padding: .5em;
     margin-bottom: 1em;
+    width: calc(100% - 1em - 2px);
 }
 
 label {

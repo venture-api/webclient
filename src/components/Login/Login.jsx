@@ -14,7 +14,9 @@ export default function Login() {
                 <input id={ w.username } type="text"/>
 
                 <label htmlFor={ w.password }>{ w.password }</label>
-                <input type="password"/>
+                <input id={ w.password } type="password"/>
+
+                <button className="primary" type="submit">{ w.submit }</button>
             </form>
 
         </div>

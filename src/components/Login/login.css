@@ -1,3 +1,11 @@
+#login {
+    width: 270px;
+}
+
 #login h1 {
     background-image: url('./padlock.svg');
+}
+
+#login #password {
+    margin-bottom: 2em;
 }

@@ -1,5 +1,6 @@
 export default {
     login: 'login',
     username: 'username',
-    password: 'password'
+    password: 'password',
+    submit: 'submit'
 }

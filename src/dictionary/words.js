@@ -1,6 +1,7 @@
 export default {
     login: 'login',
-    username: 'username',
+    player: 'player',
+    dashboard: 'dashboard',
     password: 'password',
     submit: 'submit',
     email: 'email'

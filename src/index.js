@@ -1,8 +1,12 @@
+import * as Realm from 'realm-web';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Base from './components/Base/Base';
 import reportWebVitals from './reportWebVitals';
 
+
+const gate = new Realm.App({ id: 'gate-qhorm' });
+export { gate };
 
 ReactDOM.render(
     <React.StrictMode>

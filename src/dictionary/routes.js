@@ -2,7 +2,7 @@ import w from './words';
 
 
 export default {
-    newPlayer: `/${w.player}/new`,
+    register: `/${w.register}`,
     login: `/${w.login}`,
     dashboard: '/'
 }

@@ -1,34 +1,29 @@
-import * as Realm from 'realm-web';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, generatePath } from 'react-router-dom';
-import { words as w, phrases as p, routes as r } from '../../dictionary';
-import './login.css';
+import { words as w, phrases as p, routes as r, actions } from '../../dictionary';
+import './register.css';
 import { gate } from '../../index';
+import { BaseContext } from '../Base/reducer';
 
 
-export default function Login() {
+export default function Register() {
 
-    const [ user, setUser ] = useState();
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-
-    console.log({ user })
+    const { dispatch } = useContext(BaseContext);
 
     async function handleSubmit(e) {
 
         e.preventDefault();
-        const credentials = Realm.Credentials.emailPassword(email, password);
-        const user = await gate.logIn(credentials);
-        const customUserData = await user.refreshCustomData()
-        console.log(customUserData);
-        setUser(customUserData);
+        const player = await gate.emailPasswordAuth.registerUser(email, password);
+        dispatch({ type: actions.NEW_PLAYER_REGISTERED, player })
     }
 
     return (
         <div className="center">
 
-            <form id="login" onSubmit={ handleSubmit }>
-                <h1>Login</h1>
+            <form id="register" onSubmit={ handleSubmit }>
+                <h1>{ w.register }</h1>
 
                 <label htmlFor={ w.email }>{ w.email }</label>
                 <input id={ w.email } type="text" value={ email }
@@ -39,7 +34,7 @@ export default function Login() {
                        onChange={ (e) => setPassword(e.target.value) }/>
 
                 <button className="primary" type="submit">{ w.submit }</button>
-                <Link to={ generatePath(r.register) }>{ w.register }</Link>
+                <Link to={ generatePath(r.login) }>{ w.login }</Link>
 
             </form>
 

@@ -73,3 +73,15 @@ input {
 label {
     margin-bottom: .4em;
 }
+
+h1 {
+    text-transform: capitalize;
+}
+
+form {
+    min-width: 300px;
+}
+
+button[type=submit] {
+    margin-top: .7em;
+}

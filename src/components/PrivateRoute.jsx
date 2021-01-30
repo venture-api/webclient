@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Redirect, Route, useLocation } from 'react-router-dom';
 import { routes } from '../dictionary';
-import { GlobalContext } from './Base/reducer';
+import { BaseContext } from './Base/reducer';
 
 
 export default function PrivateRoute({ component: Component, ...rest }) {
 
-    const { state: { player }} = useContext(GlobalContext);
+    const { state: { player }} = useContext(BaseContext);
     const { pathname } = useLocation();
 
     return (

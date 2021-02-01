@@ -9,15 +9,17 @@ import { actions as a } from '../../dictionary';
 *****************************************************/
 
 export const initialState = {
-    player: null
+    self: null
 };
 
 export const reducer = (state, action) => {
     switch (action.type) {
 
         case a.NEW_PLAYER_REGISTERED:
+        case a.PLAYER_LOGGED_IN:
+
             return {...state,
-                player:  action.player
+                self:  action.player
             };
     }
 }

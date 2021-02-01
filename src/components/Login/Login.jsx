@@ -1,27 +1,30 @@
+import qs from 'qs';
 import * as Realm from 'realm-web';
-import React, { useState } from 'react';
-import { Link, generatePath } from 'react-router-dom';
-import { words as w, phrases as p, routes as r } from '../../dictionary';
+import React, { useState, useContext } from 'react';
+import { Link, generatePath, useHistory, useLocation } from 'react-router-dom';
+import { words as w, routes as r, actions } from '../../dictionary';
 import './login.css';
 import { gate } from '../../index';
+import { BaseContext } from '../Base/reducer';
 
 
 export default function Login() {
 
-    const [ user, setUser ] = useState();
+    const { dispatch } = useContext(BaseContext);
+    const history = useHistory();
+    const location = useLocation();
+    const { redirectTo } = qs.parse(location.search, { ignoreQueryPrefix: true });
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 
-    console.log({ user })
-
     async function handleSubmit(e) {
-
         e.preventDefault();
+
         const credentials = Realm.Credentials.emailPassword(email, password);
-        const user = await gate.logIn(credentials);
-        const customUserData = await user.refreshCustomData()
-        console.log(customUserData);
-        setUser(customUserData);
+        const account = await gate.logIn(credentials);
+        const customUserData = await account.refreshCustomData()
+        dispatch({ type: actions.PLAYER_LOGGED_IN, player: customUserData });
+        history.push(redirectTo || r.dashboard);
     }
 
     return (
@@ -42,7 +45,6 @@ export default function Login() {
                 <Link to={ generatePath(r.register) }>{ w.register }</Link>
 
             </form>
-
         </div>
     );
 }

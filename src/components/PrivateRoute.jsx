@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Redirect, Route, useLocation } from 'react-router-dom';
 import { routes } from '../dictionary';
-import { BaseContext } from './Base/reducer';
+import { gate } from '../index';
 
 
 export default function PrivateRoute({ component: Component, ...rest }) {
 
-    const { state: { player }} = useContext(BaseContext);
     const { pathname } = useLocation();
 
     return (
         <Route { ...rest } render={(props) => {
 
-            if (player) {
+            if (gate.currentUser) {
                 return <Component {...rest} {...props} />
             } else {
                 // we do not have token stored (logged out)

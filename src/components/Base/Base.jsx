@@ -5,7 +5,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import PublicRoute from '../PublicRoute';
 import PrivateRoute from '../PrivateRoute';
-import Dashboard from '../Dashboard';
+import Playground from '../Playground/Playground';
 import { routes as r } from '../../dictionary';
 import { BaseContext, initialState, reducer } from './reducer';
 
@@ -21,7 +21,7 @@ export default function Base() {
                     <PublicRoute path={ r.login } component={ Login }/>
                     <PublicRoute path={ r.register } component={ Register }/>
 
-                    <PrivateRoute path={ r.dashboard } component={ Dashboard } />
+                    <PrivateRoute path={ r.dashboard } component={ Playground } />
                     <Redirect to={ r.dashboard } />
                 </Switch>
             </Router>

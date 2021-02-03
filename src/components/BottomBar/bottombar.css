@@ -1,0 +1,4 @@
+#bottom-bar {
+    grid-area: bottom-bar;
+    background-color: aquamarine;
+}

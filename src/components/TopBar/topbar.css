@@ -1,0 +1,7 @@
+#top-bar {
+    grid-area: top-bar;
+    background-color: white;
+    display: grid;
+    grid-template-columns: auto 100px 100px;
+    grid-template-rows: auto;
+}

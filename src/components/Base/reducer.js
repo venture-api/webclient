@@ -19,7 +19,7 @@ export const reducer = (state, action) => {
         case a.PLAYER_LOGGED_IN:
 
             return {...state,
-                self:  action.player
+                self:  action.playerData
             };
     }
 }

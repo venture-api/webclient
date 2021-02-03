@@ -22,8 +22,10 @@ export default function Login() {
 
         const credentials = Realm.Credentials.emailPassword(email, password);
         const account = await gate.logIn(credentials);
-        const customUserData = await account.refreshCustomData()
-        dispatch({ type: actions.PLAYER_LOGGED_IN, player: customUserData });
+        const customUserData = await account.refreshCustomData();
+        const mongodb = gate.currentUser.mongoClient('mongodb-atlas');
+        const projection = await mongodb.db('projection').collection('player').findOne({ id: customUserData.id });
+        dispatch({ type: actions.PLAYER_LOGGED_IN, playerData: { ...customUserData, ...projection }});
         history.push(redirectTo || r.dashboard);
     }
 

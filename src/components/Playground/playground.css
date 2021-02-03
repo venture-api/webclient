@@ -6,5 +6,5 @@
         "side-panel main"
         "bottom-bar bottom-bar";
     grid-template-columns: 20% auto;
-    grid-template-rows: 30px auto 30px;
+    grid-template-rows: 35px auto 30px;
 }

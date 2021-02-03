@@ -17,6 +17,7 @@ export const reducer = (state, action) => {
 
         case a.NEW_PLAYER_REGISTERED:
         case a.PLAYER_LOGGED_IN:
+        case a.SELF_DATA_RECEIVED:
 
             return {...state,
                 self:  action.playerData

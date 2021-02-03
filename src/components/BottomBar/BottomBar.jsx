@@ -1,5 +1,5 @@
 import React from 'react';
-import './bottombar.css';
+import './bottom-bar.css';
 
 
 export default function BottomBar() {

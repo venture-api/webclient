@@ -4,21 +4,23 @@ import { actions } from '../../dictionary';
 import { gate } from '../../index';
 import { BaseContext } from '../Base/reducer';
 import useGetProjection from '../../hooks/useGetProjection';
+import useLogout from '../../hooks/useLogout';
 
 
-const formatter = new Intl.NumberFormat('en-EN', {
+const formatter = new Intl.NumberFormat({
     style: 'decimal'
 });
 
 export default function TopBar() {
 
     const { dispatch, state: { self }} = useContext(BaseContext);
+    const logOut = useLogout();
 
     // if we have no `self` object, get our projection from DB
     const selfProjection = useGetProjection({
         trigger: ! self,
         collection: 'player',
-        query: { id: gate.currentUser.customData.id }})
+        query: { id: gate.currentUser.customData.id }});
 
     useEffect(() => {
 
@@ -35,7 +37,7 @@ export default function TopBar() {
 
         <div id="balance">{ self ? formatter.format(self.balance) : 'loading...' }</div>
 
-        <div id="player-menu" onClick={ () => gate.currentUser.logOut() }>log out</div>
+        <div id="player-menu" onClick={ () => logOut() }>{ self.email }</div>
 
     </div>);
 }

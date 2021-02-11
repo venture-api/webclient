@@ -1,19 +1,17 @@
 import qs from 'qs';
 import * as Realm from 'realm-web';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link, generatePath, useHistory, useLocation } from 'react-router-dom';
-import { words as w, routes as r, actions } from '../../dictionary';
+import { words as w, routes as r } from '../../dictionary';
 import './login.css';
 import { gate } from '../../index';
-import { BaseContext } from '../Base/reducer';
 
 
 export default function Login() {
 
-    const { dispatch } = useContext(BaseContext);
     const history = useHistory();
     const location = useLocation();
-    const { redirectTo } = qs.parse(location.search, { ignoreQueryPrefix: true });
+    const { redirectTo=r.dashboard } = qs.parse(location.search, { ignoreQueryPrefix: true });
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 
@@ -21,12 +19,11 @@ export default function Login() {
         e.preventDefault();
 
         const credentials = Realm.Credentials.emailPassword(email, password);
+        console.debug('logging in with email and password:', email, '...');
         const account = await gate.logIn(credentials);
-        const customUserData = await account.refreshCustomData();
-        const mongodb = gate.currentUser.mongoClient('mongodb-atlas');
-        const projection = await mongodb.db('projection').collection('player').findOne({ id: customUserData.id });
-        dispatch({ type: actions.PLAYER_LOGGED_IN, playerData: { ...customUserData, ...projection }});
-        history.push(redirectTo || r.dashboard);
+        await account.refreshCustomData();
+        console.debug('done, redirecting to:', redirectTo);
+        history.push(redirectTo);
     }
 
     return (

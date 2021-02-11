@@ -6,7 +6,7 @@ import BottomBar from '../BottomBar/BottomBar';
 import Main from '../Main/Main';
 
 
-export default function Playground() {
+export default function Dashboard() {
 
     return <div id="playground">
 

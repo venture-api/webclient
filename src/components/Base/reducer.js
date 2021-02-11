@@ -1,5 +1,5 @@
 import React from 'react';
-import { actions as a } from '../../dictionary';
+import { actions as a, words as w } from '../../dictionary';
 
 
 /*****************!! WARNING !!**********************
@@ -20,8 +20,12 @@ export const reducer = (state, action) => {
         case a.SELF_DATA_RECEIVED:
 
             return {...state,
-                self:  action.playerData
+                self:  action.playerData,
+                statusMessage: `${w.player} data ${w.received}`
             };
+
+        case a.PLAYER_LOGGED_OUT:
+            return initialState
     }
 }
 

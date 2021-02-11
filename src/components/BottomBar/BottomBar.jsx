@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './bottom-bar.css';
+import { BaseContext } from '../Base/reducer';
 
 
 export default function BottomBar() {
 
-    return (<div id="bottom-bar">
+    const { state: { statusMessage }} = useContext(BaseContext);
 
-    </div>);
+    return (<div id="bottom-bar">&gt;&nbsp;{ statusMessage }</div>);
 }

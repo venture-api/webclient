@@ -5,5 +5,6 @@ export default {
     dashboard: 'dashboard',
     password: 'password',
     submit: 'submit',
-    email: 'email'
+    email: 'email',
+    received: 'received'
 }
